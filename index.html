@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Responsive -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,
+                 initial-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Title -->
+    <title>PWA Roam</title>
+
+    <!-- Meta Tags required for
+       Progressive Web App -->
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
+    <meta name="theme-color" content="black" />
+
+    <!-- Manifest File link -->
+    <link rel="manifest" href="manifest.json" />
+	<style>
+		body {}
+		.wrapper {
+			display: flex; 
+			flex-direction: column;
+			align-items: center;
+				
+		}
+		.todo-form input {
+			width: 400px;
+			height: 50px;
+			font-size: medium;
+			padding: 0 10px;
+		}
+
+		.item-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			align-self: flex-center;
+			width: 512px;
+			
+		}
+		.item-list li {
+			margin-bottom: 4px;
+			font: 1.3em sans-serif;
+			color: slategray;
+			margin-left: 1em;
+
+		}
+	</style>
+  </head>
+
+  <body>
+	<div class="wrapper">
+		<h1 style="color: green">Roam</h1>
+		<form class="todo-form" onsubmit="return addItem('list', this.inputItem)">
+			<input type="text" name="todo" id="inputItem" placeholder="Enter your task item" onfocus="c" />
+		</form>
+		<br />
+
+		<ul id="list" class="item-list" >
+
+		</ul>
+	</form>
+
+   
+    <script>
+      window.addEventListener('load', () => {
+        registerSW();
+      });
+
+      window.resizeTo(512, 512);
+
+      // Register the Service Worker
+      async function registerSW() {
+        if ('serviceWorker' in navigator) {
+          try {
+            await navigator.serviceWorker.register('serviceworker.js');
+          } catch (e) {
+            console.log('SW registration failed');
+          }
+        }
+      }
+
+	  function addItem(list, inputField) { 
+		let task = document.getElementById(list);
+		let listItem = document.createElement("li");
+		listItem.innerText = `=>   ${inputField.value}`;
+		task.appendChild(listItem);
+		var input = document.getElementsByName('todo')[0];
+		input.value = ''
+		return false; 
+	  }
+    </script>
+  </body>
+</html>
