@@ -1,5 +1,5 @@
 {
-  "name": "SilkNotes",
+  "name": "Roams",
   "short_name": "PWA",
   "start_url": "index.html",
   "display": "standalone",
@@ -7,7 +7,7 @@
   "theme_color": "black",
   "scope": ".",
   "orientation": "portrait-primary",
-  "description": "SilkNotes PWA",
+  "description": "Roam PWA",
   "icons": [
     {
       "src": "images/icon-192x192.png",
